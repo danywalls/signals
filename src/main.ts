@@ -25,9 +25,9 @@ import { CardsService } from './services/cards.service';
 export class App {
   private cardsService = inject(CardsService);
 
-  // cards = this.cardsService.cards;
-  // cardLeft = this.cardsService.cardsleft;
-  // lastClient = this.cardsService.lastClient;
+  cards = this.cardsService.cards;
+  cardLeft = this.cardsService.cardsleft;
+  lastClient = this.cardsService.lastClient;
 
   add(holder: HTMLInputElement) {
     this.cardsService.add(holder.value);
