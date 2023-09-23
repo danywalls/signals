@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { computed, Injectable, signal, Signal } from '@angular/core';
 
 export type Card = {
   id: string;
@@ -8,7 +8,7 @@ export type Card = {
 
 @Injectable({ providedIn: 'root' })
 export class CardsService {
-  cards: Array<Card> = [
+  cards = signal<Card[]>([
     {
       id: '1',
       holder: 'Dany',
@@ -19,11 +19,13 @@ export class CardsService {
       holder: 'Edgar',
       status: 'Active',
     },
-  ];
+  ]);
 
-  cardsleft: number = 3;
-  
-  lastClient = 'No clients yet!';
+  cardSlots = signal<number>(3);
+
+  canAddCard = computed(() => this.cardSlots() > 0);
+
+  lastClient = signal('No clients yet!');
 
   add(holder: string) {
     const card = {
@@ -31,11 +33,11 @@ export class CardsService {
       holder,
       status: 'pending',
     };
-    this.cards = [...this.cards, card];
+    // this.cards = [...this.cards, card];
 
-    this.cardsleft--;
-    this.lastClient = `Thanks ${holder}!!`;
+    // this.cardsleft--;
+    // this.lastClient = `Thanks ${holder}!!`;
 
-    console.log(this.cards, this.lastClient, this.cardsleft);
+    // console.log(this.cards, this.lastClient, this.cardsleft);
   }
 }
