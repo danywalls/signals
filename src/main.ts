@@ -11,15 +11,18 @@ import { CardsService } from './services/cards.service';
   template: `
    
    <h3>We have {{cardLeft}} cards </h3>
+   <p>{{lastClient}}</p>
    <input type="text" #holder />
    <button (click)="add(holder)">Save</button>
   `,
 })
 export class App {
-  name = 'Angular';
-  cardsService = inject(CardsService);
+  
+  private cardsService = inject(CardsService);
+
   cards = this.cardsService.cards;
   cardLeft = this.cardsService.cardsleft;
+  lastClient = this.cardsService.lastClient;
 
   add(holder: HTMLInputElement) {
     this.cardsService.add(holder.value);

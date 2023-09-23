@@ -10,6 +10,7 @@ export type Card = {
 export class CardsService {
   cards: Array<Card> = [];
   cardsleft: number = 3;
+  lastClient = 'No clients yet!';
 
   add(holder: string) {
     const card = {
@@ -18,8 +19,10 @@ export class CardsService {
       status: 'pending',
     };
     this.cards = [...this.cards, card];
+
     this.cardsleft--;
-    console.log(this.cards);
-    console.log(this.cardsleft);
+    this.lastClient = `Thanks ${holder}!!`;
+
+    console.log(this.cards, this.lastClient, this.cardsleft);
   }
 }
