@@ -10,19 +10,20 @@ import { CardsService } from './services/cards.service';
   imports: [CommonModule],
   template: `
    
+   <h3>We have {{cardLeft}} cards </h3>
    <input type="text" #holder />
-   <button (click)="add(holder.value)">Save</button>
+   <button (click)="add(holder)">Save</button>
   `,
 })
 export class App {
-  
   name = 'Angular';
-  cardsService = inject(CardsService)
+  cardsService = inject(CardsService);
   cards = this.cardsService.cards;
   cardLeft = this.cardsService.cardsleft;
-  
-  add(holder: string){
-    this.cardsService.add(holder);
+
+  add(holder: HTMLInputElement) {
+    this.cardsService.add(holder.value);
+    holder.value = '';
   }
 }
 

@@ -18,6 +18,8 @@ export class CardsService {
       status: 'pending',
     };
     this.cards = [...this.cards, card];
-    this.cardsleft = this.cardsleft - 1;
+    this.cardsleft--;
+    console.log(this.cards);
+    console.log(this.cardsleft);
   }
 }
