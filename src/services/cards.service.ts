@@ -23,7 +23,7 @@ export class CardsService {
 
   cardSlots = signal<number>(3);
 
-  canAddCard = computed(() => this.cardSlots() > 0);
+  soldOut = computed(() => this.cardSlots() <= 0);
 
   lastClient = signal('No clients yet!');
 
@@ -33,11 +33,8 @@ export class CardsService {
       holder,
       status: 'pending',
     };
-    // this.cards = [...this.cards, card];
-
-    // this.cardsleft--;
-    // this.lastClient = `Thanks ${holder}!!`;
-
-    // console.log(this.cards, this.lastClient, this.cardsleft);
+    this.cards.update((p) => [...p, card]);
+    this.cardSlots.update((p) => p - 1);
+    this.lastClient.set(`Thanks ${holder}`!!);
   }
 }
