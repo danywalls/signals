@@ -14,10 +14,15 @@ import { CardsService } from './services/cards.service';
    <p>{{lastClient}}</p>
    <input type="text" #holder />
    <button (click)="add(holder)">Save</button>
+
+   <div *ngFor="let card of cards">
+   
+   {{card.holder}} {{card.id}}
+   </div>
+
   `,
 })
 export class App {
-  
   private cardsService = inject(CardsService);
 
   cards = this.cardsService.cards;

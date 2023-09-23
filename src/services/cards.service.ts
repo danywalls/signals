@@ -8,8 +8,21 @@ export type Card = {
 
 @Injectable({ providedIn: 'root' })
 export class CardsService {
-  cards: Array<Card> = [];
+  cards: Array<Card> = [
+    {
+      id: '1',
+      holder: 'Dany',
+      status: 'Active',
+    },
+    {
+      id: '2',
+      holder: 'Edgar',
+      status: 'Active',
+    },
+  ];
+
   cardsleft: number = 3;
+  
   lastClient = 'No clients yet!';
 
   add(holder: string) {
